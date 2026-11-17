@@ -1,0 +1,15 @@
+== 01-tables-without-rls.sql
+notes
+== 02-open-policies.sql
+posts|anyone writes|INSERT|{anon}
+posts|anyone reads|SELECT|{public}
+== 03-protected-columns.sql
+orders|status
+orders|total
+== 04-storage-policies.sql
+avatars|t
+invoices|f
+own folder|SELECT|{authenticated}|((bucket_id = 'invoices'::text) AND ((storage.foldername(name))[1] = (( SELECT auth.uid() AS uid))::text))|
+== 05-realtime-tables.sql
+public|notes|f
+public|orders|t
